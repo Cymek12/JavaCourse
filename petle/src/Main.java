@@ -7,7 +7,7 @@ public class Main {
         char exit = 'y';
         double result = 0.0;
 
-        do{
+        while (exit == 'y'){
             System.out.println("Podaj pierwszą liczbę: ");
             double a = scanner.nextDouble();
             System.out.println("Co chcesz zrobić? (+, -, *, /, %, ^");
@@ -43,8 +43,7 @@ public class Main {
             System.out.println("Czy chcesz wykonać kolejne działanie? (y/n).");
             String example = scanner.next();
             exit = example.charAt(0);
-
-        } while (exit == 'y');
+        }
 
         String nieparzysta = "Liczba z ostatniego wyniku jest nieparzysta";
         String parzysta = "Liczba z ostatniego wyniku jest parzysta";
