@@ -51,5 +51,7 @@ public class Main {
         if (!Double.isNaN(result)) {
             System.out.println(result % 2 == 1 ? nieparzysta : parzysta);
         }
+
+        scanner.close();
     }
 }
