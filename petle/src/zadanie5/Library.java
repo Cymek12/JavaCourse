@@ -34,22 +34,28 @@ public class Library {
         }
     }
 
-    public void borrowItemByTitle(String title) throws ItemIsUnavailableException, ItemDoesNotExistException {
+    public void borrowItemByTitle(String title){
         Optional<LibraryItem> optLibraryItem = findItemByTitle(title);
 
         if(optLibraryItem.isPresent()){
-            optLibraryItem.get().borrowItem();
+            try {
+                optLibraryItem.get().borrowItem();
+                System.out.println("Udało się wypożyczyć tytuł");
+            } catch (ItemIsUnavailableException e) {
+                System.out.println("Tytuł nie jest dostępny do wypożyczenia");
+            }
         }
         else {
             System.out.println("Tytuł nie istnieje");
         }
     }
 
-    public void returnItemToLibrary(String title) throws ItemDoesNotExistException {
+    public void returnItemToLibrary(String title) {
         Optional<LibraryItem> optLibraryItem = findItemByTitle(title);
 
         if(optLibraryItem.isPresent()){
             optLibraryItem.get().returnItem();
+            System.out.println("Udało się oddać tytuł do biblioteki");
         }
         else {
             System.out.println("Tytuł nie istnieje");

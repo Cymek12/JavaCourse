@@ -1,7 +1,6 @@
 package zadanie5;
 
 public class Movie extends LibraryItem{
-    static int movieCounter;
     private String director;
     private int movieTime;
 
@@ -9,7 +8,6 @@ public class Movie extends LibraryItem{
         super(title);
         this.director = director;
         this.movieTime = movieTime;
-        //movieCounter++;
     }
 
 

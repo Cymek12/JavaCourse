@@ -1,7 +1,6 @@
 package zadanie5;
 
 public class Book extends LibraryItem{
-    static int bookCounter;
     private String author;
     private int pageNumber;
 
@@ -9,7 +8,6 @@ public class Book extends LibraryItem{
         super(title);
         this.author = author;
         this.pageNumber = pageNumber;
-        //bookCounter++;
     }
 
 
