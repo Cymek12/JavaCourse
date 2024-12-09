@@ -36,6 +36,8 @@ public class Main {
                 default -> System.out.println("Brak dostępnej opcji, spróbuj ponownie");
             }
         }
+
+        scanner.close();
     }
 
     private static Library createSampleLibrary(){
