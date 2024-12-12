@@ -1,4 +1,4 @@
-package zadBinaryTreeRecurency;
+package zadBinaryTree;
 
 public class Node {
     int value;

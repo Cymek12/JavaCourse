@@ -1,4 +1,4 @@
-package zadBinaryTreeRecurency;
+package zadBinaryTree;
 
 public class BinaryTree {
     Node root;
@@ -26,16 +26,14 @@ public class BinaryTree {
     }
 
 
-    public void addNode(int value){
+    public void addRecursiveNode(int value){
         Node node = new Node();
         node.setValue(value);
         if(root == null){
             root = node;
             return;
         }
-        if(root != null){
-            addRecursive(root, value);
-        }
+        addRecursive(root, value);
     }
 
     public Node addRecursive(Node current, int value){
@@ -44,7 +42,6 @@ public class BinaryTree {
             node.setValue(value);
             return node;
         }
-
         if(current.getValue() < value){
             current.setRight(addRecursive(current.getRight(), value));
         }
@@ -52,8 +49,6 @@ public class BinaryTree {
             current.setLeft(addRecursive(current.getLeft(), value));
         }
         return current;
-
-
 
 //        if(current.getValue() < value){
 //            if(current.getRight() == null){
@@ -77,6 +72,34 @@ public class BinaryTree {
 //                addRecursive(current.getLeft(), value);
 //            }
 //        }
+    }
+
+    public void addIterativeNode(int value){
+        Node node = new Node();
+        node.setValue(value);
+        if(root == null){
+            root = node;
+            return;
+        }
+
+        Node current = root;
+        Node parent = null;
+        while (current != null){
+            if(value > current.getValue()){
+                parent = current;
+                current = current.getRight();
+            }
+            else if(value < current.getValue()){
+                parent = current;
+                current = current.getLeft();
+            }
+        }
+        if(value < parent.getValue()){
+            parent.setLeft(node);
+        }
+        if(value > parent.getValue()){
+            parent.setRight(node);
+        }
     }
 
 
