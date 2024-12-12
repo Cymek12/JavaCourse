@@ -3,6 +3,21 @@ package zadBinaryTree;
 public class BinaryTree {
     Node root;
 
+
+
+    public boolean isContain(int value){
+        if(root.getValue() == value){
+            return true;
+        }
+        Node current = new Node();
+
+        while (current != null){
+            if()
+        }
+
+
+    }
+
     public int getTreeSum(Node node){
         if(node == null){
             return 0;
