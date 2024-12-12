@@ -1,4 +1,4 @@
-package zadBinaryTree;
+package zadBinaryTreeRecurency;
 
 public class BinaryTree {
     Node root;
@@ -38,29 +38,45 @@ public class BinaryTree {
         }
     }
 
-    public void addRecursive(Node current, int value){
+    public Node addRecursive(Node current, int value){
+        if(current == null){
+            Node node = new Node();
+            node.setValue(value);
+            return node;
+        }
+
         if(current.getValue() < value){
-            if(current.getRight() == null){
-                Node node = new Node();
-                node.setValue(value);
-                current.setRight(node);
-                return;
-            }
-            if(current.getRight() != null){
-                addRecursive(current.getRight(), value);
-            }
+            current.setRight(addRecursive(current.getRight(), value));
         }
-        if(current.getValue() > value){
-            if(current.getLeft() == null){
-                Node node = new Node();
-                node.setValue(value);
-                current.setLeft(node);
-                return;
-            }
-            if(current.getLeft() != null){
-                addRecursive(current.getLeft(), value);
-            }
+        else if (current.getValue() > value) {
+            current.setLeft(addRecursive(current.getLeft(), value));
         }
+        return current;
+
+
+
+//        if(current.getValue() < value){
+//            if(current.getRight() == null){
+//                Node node = new Node();
+//                node.setValue(value);
+//                current.setRight(node);
+//                return;
+//            }
+//            if(current.getRight() != null){
+//                addRecursive(current.getRight(), value);
+//            }
+//        }
+//        if(current.getValue() > value){
+//            if(current.getLeft() == null){
+//                Node node = new Node();
+//                node.setValue(value);
+//                current.setLeft(node);
+//                return;
+//            }
+//            if(current.getLeft() != null){
+//                addRecursive(current.getLeft(), value);
+//            }
+//        }
     }
 
 
