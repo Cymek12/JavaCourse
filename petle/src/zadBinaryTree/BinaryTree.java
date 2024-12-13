@@ -3,44 +3,40 @@ package zadBinaryTree;
 public class BinaryTree {
     Node root;
 
+    //wypisywanie drzewa w kolejnosci od najmniejszej do najwiekszej
+    public void printTreeInOrder(Node current){
+        if (current.getLeft() != null) {
+            printTreeInOrder(current.getLeft());
+        }
+        System.out.println(current.getValue());
+        if (current.getRight() != null) {
+            printTreeInOrder(current.getRight());
+        }
+    }
+
+    public void printTreeInOrder(){
+        printTreeInOrder(root);
+    }
 
 
-    public boolean isContain(int value){
-        if(root.getValue() == value){
+    //funkcja sprawdzająca czy dana wartosc zawiera sie w drzewie binarnym
+    public boolean isContainRecursive(Node current, int value){
+        if(current == null){
+            return false;
+        }
+        if(current.getValue() == value){
             return true;
         }
-        Node current = new Node();
 
-        while (current != null){
-            if()
-        }
-
-
+        return isContainRecursive(current.getLeft(), value) || isContainRecursive(current.getRight(), value);
     }
 
-    public int getTreeSum(Node node){
-        if(node == null){
-            return 0;
-        }
-        else{
-            if(node.getRight() != null){
-                return node.getValue() + getTreeSum(node.getRight());
-            }
-            if(node.getLeft() != null){
-                return node.getValue() + getTreeSum(node.getLeft());
-            }
-            if(node.getLeft() == null && node.getRight() == null){
-                return node.getValue();
-            }
-        }
-        return 0;
-    }
-
-    public int getTreeSum(){
-        return getTreeSum(root);
+    public boolean isContain(int value){
+        return isContainRecursive(root, value);
     }
 
 
+    //dodawanie wartości do drzewa metodą rekurencyjną
     public void addRecursiveNode(int value){
         Node node = new Node();
         node.setValue(value);
@@ -64,31 +60,10 @@ public class BinaryTree {
             current.setLeft(addRecursive(current.getLeft(), value));
         }
         return current;
-
-//        if(current.getValue() < value){
-//            if(current.getRight() == null){
-//                Node node = new Node();
-//                node.setValue(value);
-//                current.setRight(node);
-//                return;
-//            }
-//            if(current.getRight() != null){
-//                addRecursive(current.getRight(), value);
-//            }
-//        }
-//        if(current.getValue() > value){
-//            if(current.getLeft() == null){
-//                Node node = new Node();
-//                node.setValue(value);
-//                current.setLeft(node);
-//                return;
-//            }
-//            if(current.getLeft() != null){
-//                addRecursive(current.getLeft(), value);
-//            }
-//        }
     }
 
+
+    //dodawanie wartosci do drzewa metodą iteracyjną
     public void addIterativeNode(int value){
         Node node = new Node();
         node.setValue(value);
@@ -115,21 +90,5 @@ public class BinaryTree {
         if(value > parent.getValue()){
             parent.setRight(node);
         }
-    }
-
-
-    public void printTreeInOrder(Node current){
-        if (current.getLeft() != null) {
-            printTreeInOrder(current.getLeft());
-        }
-        System.out.println(current.getValue());
-        if (current.getRight() != null) {
-            printTreeInOrder(current.getRight());
-        }
-    }
-
-
-    public void printTreeInOrder(){
-        printTreeInOrder(root);
     }
 }
