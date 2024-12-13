@@ -14,7 +14,10 @@ public class Main {
 
         binaryTree.printTreeInOrder();
 
-//        System.out.println("Suma: ");
-//        System.out.println(binaryTree.getTreeSum());
+        System.out.print("Czy cyra 8 zawiera się w drzewie: ");
+        System.out.println(binaryTree.isContain(8));
+        System.out.print("Czy cyfra 1 zawiera się w drzewie: ");
+        System.out.println(binaryTree.isContain(1));
+
     }
 }

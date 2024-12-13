@@ -4,7 +4,7 @@ public class BinaryTree {
     Node root;
 
     //wypisywanie drzewa w kolejnosci od najmniejszej do najwiekszej
-    public void printTreeInOrder(Node current){
+    private void printTreeInOrder(Node current){
         if (current.getLeft() != null) {
             printTreeInOrder(current.getLeft());
         }
@@ -20,7 +20,7 @@ public class BinaryTree {
 
 
     //funkcja sprawdzająca czy dana wartosc zawiera sie w drzewie binarnym
-    public boolean isContainRecursive(Node current, int value){
+    private boolean isContainRecursive(Node current, int value){
         if(current == null){
             return false;
         }
@@ -47,7 +47,7 @@ public class BinaryTree {
         addRecursive(root, value);
     }
 
-    public Node addRecursive(Node current, int value){
+    private Node addRecursive(Node current, int value){
         if(current == null){
             Node node = new Node();
             node.setValue(value);
