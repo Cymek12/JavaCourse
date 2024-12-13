@@ -1,8 +1,8 @@
 package zadBinaryTree;
 
 public class Node {
-    int value;
-    Node left, right;
+    private int value;
+    private Node left, right;
 
     public int getValue() {
         return value;
