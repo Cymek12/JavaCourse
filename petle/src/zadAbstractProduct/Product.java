@@ -1,4 +1,4 @@
-package zadModelowanieDanychPolimorfizm;
+package zadAbstractProduct;
 
 import java.util.Optional;
 
@@ -69,6 +69,15 @@ public abstract class Product {
 
     public abstract String getSpecificDetails();
 
-
-
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", category='" + category + '\'' +
+                ", price=" + price +
+                ", rating=" + rating +
+                ", inStock=" + inStock +
+                ", manufacturer=" + manufacturer +
+                '}';
+    }
 }

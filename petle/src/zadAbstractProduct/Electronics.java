@@ -1,14 +1,14 @@
-package zadModelowanieDanychPolimorfizm;
+package zadAbstractProduct;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class Electronics extends Product{
     private int warrantyPeriod;
 
-    public Electronics(String name, String category, double price, double rating, boolean inStock, Optional<String> manufacturer) {
+    public Electronics(String name, String category, double price, double rating, boolean inStock, Optional<String> manufacturer, int warrantyPeriod) {
         super(name, category, price, rating, inStock, manufacturer);
+        this.warrantyPeriod = warrantyPeriod;
     }
 
     public int getWarrantyPeriod() {
@@ -21,10 +21,10 @@ public class Electronics extends Product{
 
     @Override
     public String getSpecificDetails() {
-        return "";
+        return super.toString() + " okres gwarancji = " + warrantyPeriod ;
     }
 
-    public List<Electronics> getElectronicsWithWarranty(List<Product> products, int minWarranty){
+    static public List<Electronics> getElectronicsWithWarranty(List<Product> products, int minWarranty){
         return products.stream()
                 .filter(s -> s instanceof Electronics)
                 .filter(s -> ((Electronics) s).getWarrantyPeriod() >= minWarranty)
