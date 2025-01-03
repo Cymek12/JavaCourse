@@ -1,4 +1,4 @@
-package wypozyczalnia;
+package wypozyczalnia.control;
 
 import wypozyczalnia.exceptions.ItemIsUnavailableException;
 import wypozyczalnia.model.LibraryItem;

@@ -1,6 +1,6 @@
 package christmasHomework.zadAbstractProduct;
 
-import christmasHomework.zadAbstractProduct.model.*;
+import christmasHomework.zadAbstractProduct.model.Product;
 import christmasHomework.zadAbstractProduct.utils.ProductData;
 
 import java.util.List;
@@ -9,7 +9,6 @@ public class Main {
     public static void main(String[] args) {
         List<Product> products = ProductData.getProducts();
 
-        //!!!! Dlaczego nie chce sie zaimportowac pakiet import christmasHomework.zadAbstractProduct.model.Product;
 
 //        zad 1
 //        Przefiltruj produkty dostępne i tańsze niż 1000 zł.
