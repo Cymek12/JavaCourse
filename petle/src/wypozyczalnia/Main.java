@@ -1,5 +1,6 @@
 package wypozyczalnia;
 
+import wypozyczalnia.control.Library;
 import wypozyczalnia.model.Book;
 import wypozyczalnia.model.Movie;
 

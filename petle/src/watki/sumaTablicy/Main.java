@@ -3,6 +3,7 @@ package watki.sumaTablicy;
 public class Main {
     public static void main(String[] args) {
         int[] tab = new int[10];
+        int threads = 2;
 
         for (int i = 0; i < 10; i++) {
             tab[i] = i;
@@ -10,6 +11,7 @@ public class Main {
 
         Thread thread1 = new Thread(new MyThread(tab));
         Thread thread2 = new Thread(new MyThread(tab));
+
 
 
 
