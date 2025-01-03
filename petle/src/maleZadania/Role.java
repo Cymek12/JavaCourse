@@ -2,6 +2,8 @@ package maleZadania;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Role {
     public static void main(String[] args) {
@@ -11,9 +13,9 @@ public class Role {
         uzytkownicy.add(new Uzytkownicy(new ArrayList<>()));
         uzytkownicy.add(new Uzytkownicy(new ArrayList<>()));
 
-        List<String> list = uzytkownicy.stream()
+        Set<String> set = uzytkownicy.stream()
                 .flatMap(s -> s.getRole().stream())
-                .toList();
+                .collect(Collectors.toSet());
     }
 }
 

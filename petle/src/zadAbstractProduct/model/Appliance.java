@@ -1,8 +1,10 @@
-package zadAbstractProduct;
+package zadAbstractProduct.model;
+
+import zadAbstractProduct.Product;
 
 import java.util.Optional;
 
-public class Appliance extends Product{
+public class Appliance extends Product {
     private String energyClass;
 
     public Appliance(String name, String category, double price, double rating, boolean inStock, Optional<String> manufacturer, String energyClass) {

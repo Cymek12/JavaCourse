@@ -1,5 +1,7 @@
 package zadAbstractProduct;
 
+import zadAbstractProduct.model.Appliance;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
