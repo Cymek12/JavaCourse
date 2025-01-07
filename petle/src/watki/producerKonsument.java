@@ -24,71 +24,80 @@ public class Main {
     }
 }
 
-class SharedClass {
+public class SharedClass {
     private final Queue<Integer> queue;
-    private int maxSize;
+    private final int maxSize;
+    private final int limit;
+    private boolean productionFinished = false;
+    private final Lock lock = new ReentrantLock();
+    private final Condition condition = lock.newCondition();
 
     public SharedClass() {
         this.queue = new LinkedList<>();
         this.maxSize = 5;
+        this.limit = 30;
     }
 
-    public void producer(int value){
-        synchronized (queue) {
-                while (queue.size() == maxSize) {
-                    try {
-                        queue.wait();
-                    } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt();
-                        return;
-                    }
+    public void producer(){
+        lock.lock();
+        int value = 0;
+        for (int i = 0; i < limit; i++) {
+            while (queue.size() == maxSize) {
+                try {
+                    condition.await();
+                } catch (InterruptedException e) {
+                    System.out.println(e.getMessage());
                 }
-                queue.offer(value);
-                System.out.println("Producent dodał: " + value);
-                queue.notifyAll();
             }
-    }
-    
-    public void consumer(){
-        synchronized (queue) {
-                while (queue.isEmpty()) {
-                    try {
-                        queue.wait();
-                    } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt();
-                        return;
-                    }
-                }
-                int value = queue.poll();
-                System.out.println("Konsument usunął: " + value);
-                queue.notifyAll();
+            queue.offer(value++);
+            System.out.println("Dodano: " + (value - 1));
+            condition.signal();
         }
+        lock.unlock();
     }
-    
+
+    public void consumer(){
+        lock.lock();
+        while (queue.isEmpty()) {
+            try {
+                condition.await();
+            } catch (InterruptedException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        int value = queue.poll();
+        System.out.println("Usunięto: " + value);
+        condition.signal();
+        lock.unlock();
+    }
+
+    public void setProductionFinished(boolean productionFinished) {
+        this.productionFinished = productionFinished;
+    }
+
+    public boolean isProductionFinished() {
+        return productionFinished;
+    }
 }
 
 
-class MyThread implements Runnable {
+public class MyThread implements Runnable {
     private final SharedClass sharedClass;
     private final boolean isProducer;
-    private final int limit;
 
     public MyThread(SharedClass sharedClass, boolean isProducer) {
         this.sharedClass = sharedClass;
         this.isProducer = isProducer;
-        this.limit = 30;
     }
 
     @Override
     public void run() {
         if (isProducer) {
-            int value = 0;
-            for (int i = 0; i < limit; i++) {
-                sharedClass.producer(value++);
-            }
-        } 
+            sharedClass.producer();
+            sharedClass.setProductionFinished(true);
+        }
         else {
-            while (true) {
+            while (!sharedClass.isProductionFinished()) {
                 sharedClass.consumer();
             }
         }
