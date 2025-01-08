@@ -1,14 +1,13 @@
 package watki.sumaTablicy;
 
 public class MyThread implements Runnable{
-    private int[] tab;
+    private Long[] tab;
     private int start;
     private int range;
-    private int threadSum;
-    private static Integer sum = 0;
-    private static final Object lock = new Object();
+    private Long threadSum = 0L;
+    private static Long sum = 0L;
     
-    public MyThread(int[] tab, int start, int range) {
+    public MyThread(Long[] tab, int start, int range) {
         this.tab = tab;
         this.start = start;
         this.range = range;
@@ -19,13 +18,17 @@ public class MyThread implements Runnable{
         for (int i = start; i < range; i++) {
             threadSum += tab[i];
         }
-        synchronized (lock){
+        synchronized (MyThread.class){
             sum += threadSum;
         }
     }
 
 
-    public static int getThreadSum() {
+    public static Long getThreadSum() {
         return sum;
+    }
+
+    public static void resetThreadSum(){
+        sum = 0L;
     }
 }
